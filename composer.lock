@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fca8ad024ec112f8c7be991de1fba54f",
+    "packages": [
+        {
+            "name": "oblak/asset-manifest",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oblakstudio/asset-manifest.git",
+                "reference": "1b60643212d6b6794f1020c07f5c627c029df15e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oblakstudio/asset-manifest/zipball/1b60643212d6b6794f1020c07f5c627c029df15e",
+                "reference": "1b60643212d6b6794f1020c07f5c627c029df15e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Oblak\\Asset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Sibin Grasic",
+                    "email": "sibin.grasic@oblak.studio"
+                }
+            ],
+            "description": "Asset Manifest handler",
+            "support": {
+                "issues": "https://github.com/oblakstudio/asset-manifest/issues",
+                "source": "https://github.com/oblakstudio/asset-manifest/tree/v1.0.0"
+            },
+            "time": "2021-04-20T12:17:24+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

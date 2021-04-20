@@ -1,0 +1,4 @@
+build/*.zip
+node_modules
+vendor
+yarn.lock

@@ -1,0 +1,14 @@
+{
+    "name": "oblak/asset-loader",
+    "description": "Simple Asset Loader for WordPress",
+    "license": "GPL-2.0-only",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Oblak\\Asset\\": "src/"
+        }
+    },
+    "require": {
+        "oblak/asset-manifest": "^1.0"
+    }
+}
