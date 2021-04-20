@@ -26,8 +26,6 @@ jobs:
         uses: c-hive/gha-yarn-cache@v1
       - name: Install Yarn dependencies
         run: yarn install
-      - name: Lint
-        run: yarn lint
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
