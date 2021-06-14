@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/oblakstudio/asset-loader/compare/v1.0.0...v1.0.1) (2021-06-14)
+
+
+### Bug Fixes
+
+* **core:** Fixed a typo on wrong variable being used ([5485317](https://github.com/oblakstudio/asset-loader/commit/54853175d61772b0b27f0b7c2bccf024ae8e738b))
+
 # 1.0.0 (2021-04-20)
 
 
