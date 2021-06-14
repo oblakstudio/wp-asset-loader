@@ -119,12 +119,12 @@ class Loader implements LoaderInterface
 
     public function getUri(string $namespace, string $asset) : string
     {
-        return $this->manifests[$namespace]['manifest']->getUri($asset);
+        return $this->namespaces[$namespace]['manifest']->getUri($asset);
     }
 
     public function getPath(string $namespace, string $asset) : string
     {
-        return $this->manifests[$namespace]['manifest']->getPath($asset);
+        return $this->namespaces[$namespace]['manifest']->getPath($asset);
     }
 
 }
