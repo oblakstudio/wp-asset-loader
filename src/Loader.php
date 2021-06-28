@@ -89,6 +89,8 @@ class Loader implements LoaderInterface
             $basename = basename($style);
             $handler  = "{$namespace}/{$basename}";
 
+            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
+
             wp_register_style($handler, $manifest->getUri($style), [], $version);
             wp_enqueue_style($handler);
 
@@ -108,6 +110,8 @@ class Loader implements LoaderInterface
 
             $basename = basename($script);
             $handler  = "{$namespace}/{$basename}";
+
+            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
 
             wp_register_script($handler, $manifest->getUri($script), [], $version, true);
             do_action("{$namespace}/localize/$basename");
