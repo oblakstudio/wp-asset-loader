@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/oblakstudio/asset-loader/compare/v1.0.1...v1.1.0) (2021-06-28)
+
+
+### Features
+
+* **loader:** Added the ability to dequeue specific assets ([8552e5a](https://github.com/oblakstudio/asset-loader/commit/8552e5a227eac70d1c1e02e1cf419d3d32176b79))
+
 ## [1.0.1](https://github.com/oblakstudio/asset-loader/compare/v1.0.0...v1.0.1) (2021-06-14)
 
 
