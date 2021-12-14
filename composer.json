@@ -9,6 +9,7 @@
         }
     },
     "require": {
-        "oblak/asset-manifest": "^1.0"
+        "oblak/asset-manifest": "^1.0",
+        "php": ">=7.2"
     }
 }

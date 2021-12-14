@@ -1,31 +1,47 @@
 <?php
+
 namespace Oblak\Asset;
 
-interface LoaderInterface
-{
+interface LoaderInterface {
+    /**
+     * Loads styles
+     *
+     * @param  string $namespace
+     * @param  Manifest $manifest
+     * @param  array $assets
+     * @param  string $version
+     * @return mixed
+     */
+    public function loadStyles($namespace, $manifest, $assets, $version);
 
-    public function loadStyles(string $namespace, Manifest $manifest, array $assets, string $version);
+    /**
+     * Loads scripts
+     *
+     * @param  string $namespace
+     * @param  Manifest $manifest
+     * @param  array $assets
+     * @param  string $version
+     * @return mixed
+     */
+    public function loadScripts($namespace, $manifest, $assets, $version);
 
-    public function loadScripts(string $namespace, Manifest $manifest, array $assets, string $version);
-    
     /**
      * Get the cache-busted URI
      *
      * If the manifest does not have an entry for $asset, then return URI for $asset
      *
-     * @param string $asset The original name of the file before cache-busting
+     * @param  string $asset The original name of the file before cache-busting
      * @return string
      */
-    public function getUri(string $namespace, string $asset) : string;
+    public function getUri($namespace, $asset);
 
     /**
      * Get the cache-busted path
-     * 
+     *
      * If the manifest does not have an entry for $asset, then return URI for $asset
      *
      * @param  string $asset The original name of the file before cache-busting
      * @return string
      */
-    public function getPath(string $namespace, string $asset) : string;
-
+    public function getPath($namespace, $asset);
 }

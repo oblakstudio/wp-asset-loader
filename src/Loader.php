@@ -2,39 +2,61 @@
 
 namespace Oblak\Asset;
 
-class Loader implements LoaderInterface
-{
+class Loader implements LoaderInterface {
+    /**
+     * Hook we're using to load assets
+     *
+     * @var string|null
+     */
+    private static $hook = null;
 
-    private static ?string $hook = null;
+    /**
+     * Asset context
+     *
+     * @var null|string
+     */
+    private static $context = null;
 
-    private static ?string $context = null;
+    /**
+     * Loader instance
+     *
+     * @var null|Loader
+     */
+    private static $instance = null;
 
-    private static ?Loader $instance = null;
+    /**
+     * Array of registered namespaces
+     *
+     * @var array
+     */
+    private $namespaces;
 
-    private array $namespaces;
-
-    public function __construct()
-    {
-
-        self::$hook    = ( !is_admin() )  ? 'wp_enqueue_scripts' : 'admin_enqueue_scripts';
-        self::$context = ( !is_admin() ) ? 'front' : 'admin';
+    public function __construct() {
+        self::$hook    = (!is_admin()) ? 'wp_enqueue_scripts' : 'admin_enqueue_scripts';
+        self::$context = (!is_admin()) ? 'front' : 'admin';
 
         $this->namespaces = [];
-        
-        add_action(self::$hook, [$this, 'run'], -1);
 
+        add_action(self::$hook, [$this, 'run'], -1);
     }
 
-    public static function getInstance() : Loader
-    {
+    /**
+     * Gets the singleton instance
+     * @return Loader Singleton instance
+     */
+    public static function getInstance() {
         return (self::$instance === null)
             ? self::$instance = new Loader()
             : self::$instance;
     }
 
-    public function registerNamespace(string $namespace, array $data)
-    {
-
+    /**
+     * Registers a namespace to load assets for
+     * @param  string $namespace
+     * @param  array $data
+     * @return void
+     */
+    public function registerNamespace($namespace, $data) {
         $this->namespaces[$namespace] = [
             'assets'   => $data['assets'],
             'version'  => $data['version']  ?? '1.0.0',
@@ -45,17 +67,11 @@ class Loader implements LoaderInterface
                 $data['dist_path']
             ),
         ];
-
-
     }
 
-    public function run()
-    {
-
-        foreach ($this->namespaces as $namespace => $data) :
-
-            add_action(self::$hook, function() use ($namespace, $data) {
-
+    public function run() {
+        foreach ($this->namespaces as $namespace => $data) {
+            add_action(self::$hook, function () use ($namespace, $data) {
                 $this->loadStyles(
                     $namespace,
                     $data['manifest'],
@@ -69,66 +85,56 @@ class Loader implements LoaderInterface
                     $data['assets'][self::$context]['scripts'],
                     $data['version']
                 );
-
-
             }, $data['priority']);
-
-        endforeach;
+        }
     }
 
-    public function loadStyles(string $namespace, Manifest $manifest, array $assets, string $version)
-    {
-
+    public function loadStyles($namespace, $manifest, $assets, $version) {
         $load_styles = apply_filters("{$namespace}/load_styles", true);
 
-        if (!$load_styles)
+        if (!$load_styles) {
             return;
+        }
 
-        foreach ($assets as $style) :
-
+        foreach ($assets as $style) {
             $basename = basename($style);
             $handler  = "{$namespace}/{$basename}";
 
-            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
+            if (!apply_filters("{$namespace}/enqueue/{$basename}", true)) {
+                continue;
+            }
 
             wp_register_style($handler, $manifest->getUri($style), [], $version);
             wp_enqueue_style($handler);
-
-        endforeach;
-
+        }
     }
 
-    public function loadScripts(string $namespace, Manifest $manifest, array $assets, string $version)
-    {
-
+    public function loadScripts($namespace, $manifest, $assets, $version) {
         $load_scripts = apply_filters("{$namespace}/load_scripts", true);
 
-        if (!$load_scripts)
+        if (!$load_scripts) {
             return;
+        }
 
-        foreach ($assets as $script) :
-
+        foreach ($assets as $script) {
             $basename = basename($script);
             $handler  = "{$namespace}/{$basename}";
 
-            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
+            if (!apply_filters("{$namespace}/enqueue/{$basename}", true)) {
+                continue;
+            }
 
             wp_register_script($handler, $manifest->getUri($script), [], $version, true);
             do_action("{$namespace}/localize/$basename");
             wp_enqueue_script($handler);
-
-        endforeach;
-
+        }
     }
 
-    public function getUri(string $namespace, string $asset) : string
-    {
+    public function getUri($namespace, $asset) {
         return $this->namespaces[$namespace]['manifest']->getUri($asset);
     }
 
-    public function getPath(string $namespace, string $asset) : string
-    {
+    public function getPath($namespace, $asset) {
         return $this->namespaces[$namespace]['manifest']->getPath($asset);
     }
-
 }
