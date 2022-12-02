@@ -1,31 +1,38 @@
 name: Release
+
 on:
   push:
     branches:
       - master
+    paths:
+      - 'composer.lock'
+      - 'composer.json'
+      - 'src/**'
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-      - name: Install composer dependencies
-        uses: php-actions/composer@v5
-        with:
-          php_version: 7.4
-          version: 2
-          dev: no
+          node-version: 16
+          cache: yarn
       - name: Install Yarn dependencies
         run: yarn install
       - name: Release
         env:
+          GIT_AUTHOR_NAME: "oblakbot"
+          GIT_AUTHOR_EMAIL: "sibin.grasic+bot@oblak.studio"
+          GIT_COMMITTER_NAME: "oblakbot"
+          GIT_COMMITTER_EMAIL: 'sibin.grasic+bot@oblak.studio'
+          GH_TOKEN: ${{ secrets.OBLAK_BOT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: yarn release
 

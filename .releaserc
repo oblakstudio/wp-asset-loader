@@ -7,7 +7,7 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       ["@semantic-release/exec", {
-        "prepareCmd": "sh ./build/release.sh ${nextRelease.version}"
+        "prepareCmd": "sh ./.github/scripts/release.sh ${nextRelease.version}"
       }],
       ["@semantic-release/git", {
         "assets": ["CHANGELOG.md", "composer.json"],
@@ -15,9 +15,8 @@
       }],
       ["@semantic-release/github", {
         "assets": [
-          {"path": "/tmp/*.zip", "label": "Version ${nextRelease.version}"}
+          {"path": "/tmp/*.zip", "label": "Version ${nextRelease.version}", "name": "wp-asset-loader-${nextRelease.version}.zip"}
         ]
       }]
     ]
   }
-  
