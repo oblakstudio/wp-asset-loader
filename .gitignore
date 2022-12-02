@@ -1,4 +1,12 @@
-build/*.zip
 node_modules
 vendor
-yarn.lock
+test.php
+php_errors.log
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
