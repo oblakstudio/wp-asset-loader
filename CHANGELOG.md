@@ -1,3 +1,23 @@
+# [2.0.0](https://github.com/oblakstudio/asset-loader/compare/v1.2.0...v2.0.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **Build:** Fixed build file ([b3fce0c](https://github.com/oblakstudio/asset-loader/commit/b3fce0cc1b6aac5ffc22fc1ba45fd2bac8f67519))
+* Fixed gitignore ([07c7ae0](https://github.com/oblakstudio/asset-loader/commit/07c7ae027ccd5b3fde010ec87a7627b40f0cb3f3))
+
+
+### Features
+
+* Complete rework ([4e0cc16](https://github.com/oblakstudio/asset-loader/commit/4e0cc16430f894e3558266796790deaa01176a6f))
+* Complete rework ([37ae307](https://github.com/oblakstudio/asset-loader/commit/37ae3079d3d0b887c98853ec050c3a669c793be2))
+
+
+### BREAKING CHANGES
+
+* Reworked the entire asset loader
+* Reworked the entire asset loader
+
 # [1.2.0](https://github.com/oblakstudio/asset-loader/compare/v1.1.0...v1.2.0) (2021-12-14)
 
 
