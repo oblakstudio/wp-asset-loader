@@ -126,7 +126,7 @@ class Asset_Loader {
          *
          * @since 2.0.0
          */
-        if ( apply_filters( "{$namespace}_load_styles", true ) ) {
+        if ( ! apply_filters( "{$namespace}_load_styles", true ) ) {
             return;
         }
 
@@ -161,6 +161,7 @@ class Asset_Loader {
      * @param  string         $version   Version to use for assets.
      */
     public function load_scripts( $namespace, $manifest, $assets, $version ) {
+
         /**
          * Should we load scripts for this namespace?
          *
@@ -168,7 +169,7 @@ class Asset_Loader {
          *
          * @since 2.0.0
          */
-        if ( apply_filters( "{$namespace}_load_scripts", true ) ) {
+        if ( ! apply_filters( "{$namespace}_load_scripts", true ) ) {
             return;
         }
 

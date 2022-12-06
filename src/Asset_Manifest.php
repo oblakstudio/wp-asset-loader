@@ -69,7 +69,7 @@ class Asset_Manifest {
      * @return string
      */
     public function get_uri( $asset ) {
-        return "{$this->dist}/{$this->get($asset)}";
+        return "{$this->dist_uri}/{$this->get($asset)}";
     }
 
 
@@ -82,6 +82,6 @@ class Asset_Manifest {
      * @return string
      */
     public function get_path( $asset ) {
-        return "{$this->path}/{$this->get($asset)}";
+        return "{$this->dist_path}/{$this->get($asset)}";
     }
 }
