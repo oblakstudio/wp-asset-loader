@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.0...v2.0.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* Fixed loader filters ([26af68c](https://github.com/oblakstudio/wp-asset-loader/commit/26af68c2f9c063d9f1e65c0bcb6943e45e18146e))
+
 # [2.0.0](https://github.com/oblakstudio/asset-loader/compare/v1.2.0...v2.0.0) (2022-12-02)
 
 
