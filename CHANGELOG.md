@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.1...v2.0.2) (2022-12-11)
+
+
+### Bug Fixes
+
+* Fixed basename resolving ([9ebb2fc](https://github.com/oblakstudio/wp-asset-loader/commit/9ebb2fc910b8e500eb9504cb164def9b413845d1))
+
 ## [2.0.1](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.0...v2.0.1) (2022-12-06)
 
 
