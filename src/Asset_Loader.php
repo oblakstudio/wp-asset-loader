@@ -132,7 +132,7 @@ class Asset_Loader {
 
         foreach ( $assets as $style ) {
 
-            $basename = str_replace( basename( $style ), '.css', $style );
+            $basename = str_replace( '.css', '', basename( $style ) );
             $handler  = "{$namespace}-{$basename}";
 
             /**
@@ -175,7 +175,7 @@ class Asset_Loader {
 
         foreach ( $assets as $script ) {
 
-            $basename = str_replace( basename( $script ), '.js', $script );
+            $basename = str_replace( '.js', '', basename( $script ) );
             $handler  = "{$namespace}-{$basename}";
 
             /**
