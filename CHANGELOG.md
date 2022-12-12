@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.2...v2.0.3) (2022-12-12)
+
+
+### Bug Fixes
+
+* Fixed manifest URI ([97c93a6](https://github.com/oblakstudio/wp-asset-loader/commit/97c93a68b6301c2be8b2f9d10e0ee8119f2a7f1e))
+
 ## [2.0.2](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.1...v2.0.2) (2022-12-11)
 
 
