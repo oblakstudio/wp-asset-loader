@@ -57,7 +57,7 @@ class Asset_Manifest {
      * @return string
      */
     private function get( $asset ) {
-        return isset( $this->manifest[ $asset ] ) ? $this->manifest[ $asset ] : $asset;
+        return isset( $this->assets[ $asset ] ) ? $this->assets[ $asset ] : $asset;
     }
 
     /**
