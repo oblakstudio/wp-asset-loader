@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.3...v2.0.4) (2023-02-03)
+
+
+### Bug Fixes
+
+* Fixed phpdoc ([617a80f](https://github.com/oblakstudio/wp-asset-loader/commit/617a80f8acd2df9d87268d5673130695d2f8258a))
+
 ## [2.0.3](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.2...v2.0.3) (2022-12-12)
 
 
