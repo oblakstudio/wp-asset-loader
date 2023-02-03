@@ -56,7 +56,7 @@ class Asset_Loader {
     /**
      * Gets the singleton instance
      *
-     * @return Loader
+     * @return Asset_Loader
      */
     public static function get_instance() {
         return self::$instance ?? self::$instance = new Asset_Loader(); //phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
