@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.4...v2.1.0) (2023-08-08)
+
+
+### Features
+
+* Added getter trait ([f2fed4d](https://github.com/oblakstudio/wp-asset-loader/commit/f2fed4dbaebd999726a1e329038d6ee75ed45ab7))
+
 ## [2.0.4](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.3...v2.0.4) (2023-02-03)
 
 
