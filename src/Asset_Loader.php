@@ -37,7 +37,7 @@ class Asset_Loader {
      *
      * @var array
      */
-    private $namespaces;
+    private array $namespaces = array();
 
     /**
      * Class constructor
@@ -59,7 +59,7 @@ class Asset_Loader {
      * @return Asset_Loader
      */
     public static function get_instance() {
-        return self::$instance ?? self::$instance = new Asset_Loader(); //phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
+        return self::$instance ??= new Asset_Loader(); //phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
     }
 
     /**
@@ -87,37 +87,28 @@ class Asset_Loader {
      */
     public function run() {
         foreach ( $this->namespaces as $namespace => $data ) {
-            add_action(
-                self::$hook,
-                function () use ( $namespace, $data ) {
-                    $this->load_styles(
-                        $namespace,
-                        $data['manifest'],
-                        $data['assets'][ self::$context ]['styles'],
-                        $data['version']
-                    );
-
-                    $this->load_scripts(
-                        $namespace,
-                        $data['manifest'],
-                        $data['assets'][ self::$context ]['scripts'],
-                        $data['version']
-                    );
-                },
-                $data['priority']
-            );
+            foreach ( array( 'styles', 'scripts' ) as $asset_type ) {
+                ! empty( $data['assets'][ self::$context ][ $asset_type ] ) &&
+                add_action(
+                    self::$hook,
+                    fn() => $this->enqueue_assets( $asset_type, $namespace, $data ),
+                    $data['priority']
+                );
+            }
         }
     }
 
     /**
-     * Load styles for a namespace
+     * Enqueues the assets for a namespace
      *
-     * @param  string         $namespace Namespace to load styles for.
-     * @param  Asset_Manifest $manifest  Asset manifest.
-     * @param  string[]       $assets    Array of assets.
-     * @param  string         $version   Version to use for assets.
+     * @param  string $type      Asset type. Can be 'styles' or 'scripts'.
+     * @param  string $namespace Namespace to enqueue assets for.
+     * @param  array  $data      Namespace data.
      */
-    public function load_styles( $namespace, $manifest, $assets, $version ) {
+    public function enqueue_assets( string $type, string $namespace, array $data ) {
+        $singular_type = rtrim( $type, 's' );
+        $register      = "wp_register_{$singular_type}";
+        $enqueue       = "wp_enqueue_{$singular_type}";
 
         /**
          * Should we load styles for this namespace?
@@ -126,13 +117,18 @@ class Asset_Loader {
          *
          * @since 2.0.0
          */
-        if ( ! apply_filters( "{$namespace}_load_styles", true ) ) {
+        if ( ! apply_filters( "{$namespace}_load_{$type}", true ) ) {
             return;
         }
 
-        foreach ( $assets as $style ) {
-
-            $basename = str_replace( '.css', '', basename( $style ) );
+        foreach ( $data['assetas'][ self::$context ][ $type ] ?? array() as $asset ) {
+            $basename = strtr(
+                basename( $asset ),
+                array(
+					'.css' => '',
+					'.js'  => '',
+                )
+            );
             $handler  = "{$namespace}-{$basename}";
 
             /**
@@ -143,65 +139,12 @@ class Asset_Loader {
              *
              * @since 2.0.0
              */
-            if ( ! apply_filters( "{$namespace}_load_style", true, $basename ) ) {
+            if ( ! apply_filters( "{$namespace}_load_{$singular_type}", true, $basename ) ) {
                 continue;
             }
 
-            wp_register_style( $handler, $manifest->get_uri( $style ), array(), $version );
-            wp_enqueue_style( $handler );
-        }
-    }
-
-    /**
-     * Load scripts for a namespace
-     *
-     * @param  string         $namespace Namespace to load styles for.
-     * @param  Asset_Manifest $manifest  Asset manifest.
-     * @param  string[]       $assets    Array of assets.
-     * @param  string         $version   Version to use for assets.
-     */
-    public function load_scripts( $namespace, $manifest, $assets, $version ) {
-
-        /**
-         * Should we load scripts for this namespace?
-         *
-         * @param bool $load_scripts Whether to load styles.
-         *
-         * @since 2.0.0
-         */
-        if ( ! apply_filters( "{$namespace}_load_scripts", true ) ) {
-            return;
-        }
-
-        foreach ( $assets as $script ) {
-
-            $basename = str_replace( '.js', '', basename( $script ) );
-            $handler  = "{$namespace}-{$basename}";
-
-            /**
-             * Short-cuts the loading of a specific script.
-             *
-             * @param bool   $load_stype Whether to load the script.
-             * @param string $basename   Script basename.
-             *
-             * @since 2.0.0
-             */
-            if ( ! apply_filters( "{$namespace}_load_script", true, $basename ) ) {
-                continue;
-            }
-
-            wp_register_script( $handler, $manifest->get_uri( $script ), array(), $version, true );
-
-            /**
-             * Localize the script
-             *
-             * @param string $basename Script basename.
-             *
-             * @since 2.0.0
-             */
-            do_action( "{$namespace}_localize_script", $basename );
-
-            wp_enqueue_script( $handler );
+            $register( $handler, $data['manifest']->get_uri( $asset ), array(), $data['version'] );
+            $enqueue( $handler );
         }
     }
 
@@ -212,7 +155,7 @@ class Asset_Loader {
      * @param  string $asset     Asset to get URI for.
      * @return string
      */
-    public function get_uri( $namespace, $asset ) {
+    public function get_uri( string $namespace, string $asset ): string {
         return $this->namespaces[ $namespace ]['manifest']->get_uri( $asset );
     }
 
@@ -223,7 +166,7 @@ class Asset_Loader {
      * @param  string $asset     Asset to get path for.
      * @return string
      */
-    public function get_path( $namespace, $asset ) {
+    public function get_path( string $namespace, string $asset ): string {
         return $this->namespaces[ $namespace ]['manifest']->get_path( $asset );
     }
 }

@@ -1,33 +1,28 @@
 {
-    "name": "oblak/wp-asset-loader",
-    "description": "Simple Asset Loader for WordPress",
-    "license": "GPL-2.0-only",
-    "version": "2.0.4",
-    "autoload": {
-        "psr-4": {
-            "Oblak\\WP\\": "src"
-        }
-    },
-    "require": {
-        "php": ">=7.3"
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-        "wp-coding-standards/wpcs": "*",
-        "phpcompatibility/phpcompatibility-wp": "*"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
-    "scripts": {
-        "install-codestandards": [
-            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
-        ],
-        "post-install-cmd": [
-            "@install-codestandards"
-        ]
+  "name": "oblak/wp-asset-loader",
+  "description": "Simple Asset Loader for WordPress",
+  "license": "GPL-2.0-only",
+  "version": "2.0.4",
+  "autoload": {
+    "psr-4": {
+      "Oblak\\WP\\": "src"
     }
+  },
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "oblak/wordpress-coding-standard": "^1"
+  },
+  "suggest": {
+    "automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
+  },
+  "config": {
+    "classmap-authoritative": true,
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
 }

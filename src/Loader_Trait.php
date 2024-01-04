@@ -11,26 +11,22 @@ namespace Oblak\WP;
  * Getters for asset path and URI.
  */
 trait Loader_Trait {
-
     /**
      * Namespace for the assets
      *
      * @var string
      */
-    protected $namespace;
+    protected ?string $namespace = null;
 
     /**
      * Initializes the asset loader
      *
-     * @param array $assets Array of assets to load.
+     * @param array       $args      Array of assets to load.
+     * @param string|null $namespace Namespace for the assets. Defaults to null. Optional.
      */
-    protected function init_asset_loader( $assets ) {
-        add_action(
-            'init',
-            function() use ( $assets ) {
-                Asset_Loader::get_instance()->register_namespace( $this->namespace, $assets );
-            }
-        );
+    protected function init_asset_loader( array $args, ?string $namespace = null ): void {
+        $this->namespace ??= $namespace ?? $args['namespace'] ?? wp_generate_uuid4();
+        add_action( 'init', fn() => Asset_Loader::get_instance()->register_namespace( $this->namespace, $args ) );
     }
 
     /**

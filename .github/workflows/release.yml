@@ -1,42 +1,25 @@
 name: Release
-
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-    paths:
-      - '.github/**'
-      - 'src/**'
-      - '.releaserc'
-      - 'composer.lock'
-      - 'composer.json'
-      - 'package.json'
-      - 'yarn.lock'
-
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+          token: ${{ secrets.OBLAK_BOT_TOKEN }}
+      - name: Publish a composer package
+        uses: better-php-actions/publish-composer-package@v1
         with:
-          node-version: 16
-          cache: yarn
-      - name: Install Yarn dependencies
-        run: yarn install
-      - name: Release
-        env:
-          GIT_AUTHOR_NAME: "oblakbot"
-          GIT_AUTHOR_EMAIL: "sibin.grasic+bot@oblak.studio"
-          GIT_COMMITTER_NAME: "oblakbot"
-          GIT_COMMITTER_EMAIL: 'sibin.grasic+bot@oblak.studio'
-          GH_TOKEN: ${{ secrets.OBLAK_BOT_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release
-
+          package_slug: "wp-asset-loader"
+          package_name: "WP Asset Loader"
+          with_gpg: true
+          gpg_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          release_token: ${{ secrets.OBLAK_BOT_TOKEN }}
