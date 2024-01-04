@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/oblakstudio/wp-asset-loader/compare/v2.1.0...v3.0.0) (2024-01-04)
+
+
+### Features
+
+* Improvements and tweaks ([3632fe5](https://github.com/oblakstudio/wp-asset-loader/commit/3632fe5ff4efe14c1ff1865312eaafc7edbf376e))
+
+
+### BREAKING CHANGES
+
+* Requires PHP 8.0
+
 # [2.1.0](https://github.com/oblakstudio/wp-asset-loader/compare/v2.0.4...v2.1.0) (2023-08-08)
 
 
