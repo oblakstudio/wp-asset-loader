@@ -121,7 +121,7 @@ class Asset_Loader {
             return;
         }
 
-        foreach ( $data['assetas'][ self::$context ][ $type ] ?? array() as $asset ) {
+        foreach ( $data['assets'][ self::$context ][ $type ] ?? array() as $asset ) {
             $basename = strtr(
                 basename( $asset ),
                 array(
