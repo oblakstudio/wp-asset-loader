@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/oblakstudio/wp-asset-loader/compare/v3.0.0...v3.0.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* Fixed typo ([e6f0542](https://github.com/oblakstudio/wp-asset-loader/commit/e6f05420b5062edea174126fd7a804d75436faae))
+
 # [3.0.0](https://github.com/oblakstudio/wp-asset-loader/compare/v2.1.0...v3.0.0) (2024-01-04)
 
 
