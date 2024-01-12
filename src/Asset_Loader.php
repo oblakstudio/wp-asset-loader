@@ -144,6 +144,9 @@ class Asset_Loader {
             }
 
             $register( $handler, $data['manifest']->get_uri( $asset ), array(), $data['version'] );
+
+            'script' === $singular_type && do_action( "{$namespace}_localize_script", $basename ); //phpcs:ignore WooCommerce.Commenting
+
             $enqueue( $handler );
         }
     }
