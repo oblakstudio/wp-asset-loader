@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/oblakstudio/wp-asset-loader/compare/v3.0.1...v3.0.2) (2024-01-13)
+
+
+### Bug Fixes
+
+* Script localization refix ([0723c14](https://github.com/oblakstudio/wp-asset-loader/commit/0723c148f59d5b1a5af3d652f723c095a98fc66f))
+
 ## [3.0.1](https://github.com/oblakstudio/wp-asset-loader/compare/v3.0.0...v3.0.1) (2024-01-04)
 
 
