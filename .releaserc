@@ -1,0 +1,27 @@
+{
+  "branches": [
+    "master"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "zip -r '/tmp/release.zip' ./src README.md"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "/tmp/release.zip",
+            "name": "wp-asset-loader-${nextRelease.version}.zip",
+            "label": "WP Asset Loader v${nextRelease.version}"
+          }
+        ]
+      }
+    ]
+  ]
+}
