@@ -2,14 +2,10 @@
   "name": "oblak/wp-asset-loader",
   "description": "Simple Asset Loader for WordPress",
   "license": "GPL-2.0-only",
-  "version": "3.0.2",
-  "autoload": {
-    "psr-4": {
-      "Oblak\\WP\\": "src"
-    }
-  },
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.0",
+    "x-wp/helper-classes": "^1",
+    "x-wp/helper-functions": "^1"
   },
   "require-dev": {
     "oblak/wordpress-coding-standard": "^1"
@@ -17,10 +13,17 @@
   "suggest": {
     "automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
   },
+  "autoload": {
+    "psr-4": {
+      "Oblak\\WP\\": "src/Legacy/",
+      "XWP\\Dependency\\": "src"
+    },
+    "files": [
+      "src/Utils/xwp-dep-loader-fns.php",
+      "src/Utils/xwp-dep-loader-init.php"
+    ]
+  },
   "config": {
-    "classmap-authoritative": true,
-    "optimize-autoloader": true,
-    "sort-packages": true,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
