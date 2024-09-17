@@ -3,12 +3,16 @@
   "description": "Simple Asset Loader for WordPress",
   "license": "GPL-2.0-only",
   "require": {
-    "php": ">=8.0",
-    "x-wp/helper-classes": "^1",
-    "x-wp/helper-functions": "^1"
+    "x-wp/asset-loader": "^1"
   },
   "require-dev": {
-    "oblak/wordpress-coding-standard": "^1"
+    "oblak/wordpress-coding-standard": "^1",
+    "php-stubs/wordpress-stubs": "^6.5",
+    "phpstan/extension-installer": "^1.3",
+    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan-deprecation-rules": "^1.1",
+    "swissspidy/phpstan-no-private": "^0.2.0",
+    "szepeviktor/phpstan-wordpress": "^1.3"
   },
   "suggest": {
     "automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -16,16 +20,16 @@
   "autoload": {
     "psr-4": {
       "Oblak\\WP\\": "src/Legacy/",
-      "XWP\\Dependency\\": "src"
+      "XWP\\Dependency\\": "src/"
     },
     "files": [
-      "src/Utils/xwp-dep-loader-fns.php",
-      "src/Utils/xwp-dep-loader-init.php"
+      "src/Utils/xwp-dep-loader-fns.php"
     ]
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true
     }
   }
 }

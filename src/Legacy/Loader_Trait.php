@@ -7,13 +7,13 @@
 
 namespace Oblak\WP;
 
-use XWP\Dependency\Retriever;
-
 /**
  * Getters for asset path and URI.
+ *
+ * @deprecated 5.0.0 Use \XWP_Asset_Retriever instead.
  */
 trait Loader_Trait {
-    use Retriever;
+    use \XWP_Asset_Retriever;
 
     /**
      * Initializes the asset loader
@@ -22,7 +22,7 @@ trait Loader_Trait {
      * @param string|null $namespace Namespace for the assets. Defaults to null. Optional.
      */
     protected function init_asset_loader( array $args, ?string $namespace = null ): void {
-        $this->bundle_id ??= $namespace ?? $args['namespace'] ?? \wp_generate_uuid4();
+        $this->bundle_id ??= $namespace ?? $args['namespace'] ?? $args['id'] ?? \wp_generate_uuid4();
         \add_action(
             'init',
             fn() => Asset_Loader::instance()->register_namespace( $this->bundle_id, $args )

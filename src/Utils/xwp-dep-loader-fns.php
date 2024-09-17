@@ -13,13 +13,7 @@
  * @param array  $config Bundle configuration.
  */
 function xwp_add_dependency_bundle( string $id, array $config ): void {
-    add_filter(
-        'xwp_dependency_bundles',
-        static function ( array $bundles ) use ( $id, $config ): array {
-			$bundles[ $id ] = $config;
-			return $bundles;
-		},
-        10,
-        1,
-    );
+    $config['id'] = $id;
+
+    XWP_Asset_Loader::load_bundle( $config );
 }
